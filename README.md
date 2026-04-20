@@ -24,7 +24,7 @@ The extension is not yet on the Chrome Web Store. Install it manually in a few s
 Clone or download this repository:
 
 ```bash
-git clone https://github.com/YevheniiKliahin/dwarfer-gif-extension.git
+git clone https://github.com/ipogodin/dwarfer-gif-extension.git
 ```
 
 Or click **Code → Download ZIP** on GitHub and unzip it.
