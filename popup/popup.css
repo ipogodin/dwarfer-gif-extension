@@ -1,0 +1,215 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  width: 300px;
+  font-family: 'Be Vietnam Pro', system-ui, -apple-system, sans-serif;
+  background: #0d100e;
+  color: #e8eeea;
+  -webkit-font-smoothing: antialiased;
+}
+
+#app {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.state {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* ── Brand header ── */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(62, 203, 106, 0.12);
+}
+
+.brand-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+}
+
+.brand-name {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: #e8eeea;
+}
+
+/* ── Card ── */
+.card {
+  background: linear-gradient(180deg, rgba(25, 32, 25, 0.90) 0%, rgba(14, 20, 15, 0.88) 100%);
+  border: 1px solid rgba(62, 203, 106, 0.15);
+  border-radius: 14px 6px 14px 6px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.card-title {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #e8eeea;
+  line-height: 1.3;
+}
+
+.card-body {
+  font-size: 0.8rem;
+  color: #8fa49a;
+  line-height: 1.6;
+}
+
+.card-body strong {
+  color: #b8ccbf;
+  font-weight: 600;
+}
+
+/* ── User card ── */
+.user-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 999px;
+}
+
+.user-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 2px solid rgba(62, 203, 106, 0.30);
+  flex-shrink: 0;
+  background: #192019;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+}
+
+.user-name {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #e8eeea;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.user-email {
+  font-size: 0.72rem;
+  color: #6e8476;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── Buttons ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 9px 16px;
+  border-radius: 8px 4px 8px 4px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+  transition: opacity 0.15s, transform 0.15s, background 0.15s;
+  font-family: inherit;
+}
+
+.btn:hover {
+  opacity: 0.88;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #3ecb6a 0%, #2ab55c 100%);
+  color: #fff;
+  box-shadow: 0 6px 20px rgba(62, 203, 106, 0.28);
+}
+
+.btn-primary:hover {
+  opacity: 1;
+  background: linear-gradient(135deg, #52d47a 0%, #3ccc6c 100%);
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.04);
+  color: #e8eeea;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: #6e8476;
+  font-size: 0.75rem;
+  padding: 6px 12px;
+}
+
+.btn-ghost:hover {
+  color: #8fa49a;
+  opacity: 1;
+}
+
+/* ── Research note ── */
+.research-note {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.68rem;
+  color: #4d6257;
+  letter-spacing: 0.01em;
+  padding: 0 2px;
+}
+
+.research-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(62, 203, 106, 0.35);
+  flex-shrink: 0;
+}
+
+/* ── Spinner ── */
+.spinner {
+  width: 24px;
+  height: 24px;
+  border: 2px solid #1e2b1f;
+  border-top-color: #3ecb6a;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  margin: 24px auto;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}

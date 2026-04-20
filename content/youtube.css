@@ -1,0 +1,225 @@
+.dwarfer-gif-embed {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 6px 0;
+  max-width: 320px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #111;
+}
+
+.dwarfer-gif-img {
+  display: block;
+  max-width: 320px;
+  max-height: 240px;
+  width: auto;
+  height: auto;
+  border-radius: 8px 8px 0 0;
+  object-fit: contain;
+}
+
+.dwarfer-gif-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  font-size: 10px;
+  font-family: sans-serif;
+  color: #aaa;
+  background: #111;
+  border-radius: 0 0 8px 8px;
+  letter-spacing: 0.02em;
+}
+
+/* ── GIF button injected into comment toolbar ── */
+.dwarfer-gif-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  margin-left: 4px;
+  border: 1px solid #3ea6ff;
+  border-radius: 18px;
+  background: transparent;
+  color: #3ea6ff;
+  font-size: 12px;
+  font-weight: 700;
+  font-family: sans-serif;
+  cursor: pointer;
+  letter-spacing: 0.05em;
+  transition: background 0.15s;
+}
+
+.dwarfer-gif-btn:hover {
+  background: rgba(62, 166, 255, 0.12);
+}
+
+/* ── GIF picker panel ── */
+.dwarfer-gif-panel {
+  display: none;
+  flex-direction: column;
+  width: 100%;
+  max-width: 560px;
+  margin-top: 8px;
+  border: 1px solid #3f3f3f;
+  border-radius: 12px;
+  background: #212121;
+  overflow: hidden;
+  font-family: sans-serif;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.5);
+  z-index: 9999;
+}
+
+.dwarfer-gif-panel-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border-bottom: 1px solid #3f3f3f;
+}
+
+.dwarfer-gif-search {
+  flex: 1;
+  padding: 7px 12px;
+  border: 1px solid #555;
+  border-radius: 20px;
+  background: #111;
+  color: #fff;
+  font-size: 14px;
+  outline: none;
+}
+
+.dwarfer-gif-search:focus {
+  border-color: #3ea6ff;
+}
+
+.dwarfer-gif-close {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: #aaa;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dwarfer-gif-close:hover {
+  background: #3f3f3f;
+  color: #fff;
+}
+
+.dwarfer-gif-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3px;
+  padding: 8px;
+  max-height: 280px;
+  overflow-y: auto;
+}
+
+.dwarfer-gif-item {
+  border-radius: 6px;
+  overflow: hidden;
+  cursor: pointer;
+  aspect-ratio: 4/3;
+  background: #111;
+}
+
+.dwarfer-gif-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: opacity 0.1s;
+}
+
+.dwarfer-gif-item:hover img {
+  opacity: 0.85;
+}
+
+.dwarfer-gif-empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: #aaa;
+  font-size: 13px;
+  padding: 24px 0;
+  margin: 0;
+}
+
+.dwarfer-gif-powered {
+  padding: 6px 12px;
+  font-size: 10px;
+  color: #666;
+  text-align: right;
+  border-top: 1px solid #3f3f3f;
+}
+
+/* ── Sign-in card ── */
+.dwarfer-signin-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 24px 28px 20px;
+  margin-top: 8px;
+  background: #1e1e1e;
+  border: 1px solid #3f3f3f;
+  border-radius: 14px;
+  font-family: sans-serif;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.6);
+  max-width: 340px;
+}
+
+.dwarfer-signin-close {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  background: none;
+  border: none;
+  color: #888;
+  font-size: 15px;
+  cursor: pointer;
+  line-height: 1;
+  padding: 2px 4px;
+}
+
+.dwarfer-signin-close:hover { color: #fff; }
+
+.dwarfer-signin-logo {
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.03em;
+}
+
+.dwarfer-signin-text {
+  font-size: 13px;
+  color: #aaa;
+  margin: 0;
+  text-align: center;
+  line-height: 1.4;
+}
+
+.dwarfer-signin-google-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 20px;
+  background: #fff;
+  color: #3c3c3c;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: sans-serif;
+  cursor: pointer;
+  transition: background 0.15s;
+  white-space: nowrap;
+}
+
+.dwarfer-signin-google-btn:hover { background: #f0f0f0; }
+.dwarfer-signin-google-btn:disabled { opacity: 0.6; cursor: default; }
