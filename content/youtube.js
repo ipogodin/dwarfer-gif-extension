@@ -3,6 +3,8 @@
 //   2. dwarfer.link/g/... (real dot or U+2024 ONE DOT LEADER lookalike)
 const DWARFER_URL_REGEX = /https?:\/\/dwarfer[.\u2024]link\/g\/([a-zA-Z0-9]+)|dwarfer[.\u2024]link\/g\/([a-zA-Z0-9]+)/g;
 
+let renderEnabled = true;
+
 // Track elements where a GIF was *successfully embedded* (not just visited).
 const embedded = new WeakSet();
 // Track elements currently being processed to prevent concurrent duplicate runs.
@@ -10,6 +12,9 @@ const inFlight = new WeakSet();
 
 // Track in-flight requests to avoid duplicate fetches for the same code.
 const pending = new Map();
+
+// Stores hidden wrapper references for each embed so they can be restored on disable.
+const embedMeta = new Map();
 
 /**
  * Ask the service worker to resolve a /g/ code.
@@ -111,6 +116,7 @@ async function processHashtagPairFormat(el) {
     dwarferWrapper.style.display = 'none';
     codeWrapper.style.display = 'none';
     codeWrapper.insertAdjacentElement('afterend', embed);
+    embedMeta.set(embed, { dwarferWrapper, codeWrapper });
     didEmbed = true;
   });
 
@@ -158,6 +164,7 @@ async function processUrlFormat(el) {
  * eligible for re-processing on the next mutation.
  */
 async function processNode(el) {
+  if (!renderEnabled) return;
   if (inFlight.has(el)) return; // already processing — prevent concurrent duplicate runs
   if (embedded.has(el)) {
     // YouTube may re-render comment content after an edit, removing our
@@ -206,9 +213,7 @@ function scanComments(root = document) {
     'ytd-comment-renderer #content-text, yt-attributed-string'
   );
   candidates.forEach((el) => {
-    if (!embedded.has(el) && el.textContent.includes('#dwarfer0link')) {
-      processNode(el);
-    }
+    if (el.textContent.includes('#dwarfer0link')) processNode(el);
   });
 }
 
@@ -217,7 +222,7 @@ scanComments();
 
 // Periodic fallback: catches cases where YouTube toggles visibility or
 // re-renders via custom element internals without triggering childList mutations.
-setInterval(scanComments, 2000);
+let scanIntervalId = setInterval(scanComments, 2000);
 
 // Watch for new comments and for YouTube updating existing comment content.
 const observer = new MutationObserver((mutations) => {
@@ -360,8 +365,6 @@ async function onGifSelected(gifItem) {
   } catch (err) {
     if (err.message === 'NOT_LOGGED_IN') {
       showLoginPrompt();
-    } else {
-      console.error('[dwarfer] Failed to create GIF link:', err);
     }
   }
 }
@@ -485,6 +488,7 @@ function showLoginPrompt() {
 }
 
 function injectGifButton() {
+  if (!renderEnabled) return;
   if (document.querySelector('ytd-commentbox .dwarfer-gif-btn')) return;
   const emojiBtn = document.querySelector('ytd-commentbox #emoji-button');
   if (!emojiBtn) return;
@@ -522,3 +526,47 @@ const commentBoxObserver = new MutationObserver(() => {
 commentBoxObserver.observe(document.body, { childList: true, subtree: true });
 
 injectGifButton();
+
+// ── GIF rendering toggle ──────────────────────────────────────────────────
+
+function disableRendering() {
+  clearInterval(scanIntervalId);
+  scanIntervalId = null;
+  observer.disconnect();
+  commentBoxObserver.disconnect();
+
+  document.querySelectorAll('.dwarfer-gif-embed').forEach(embed => {
+    const meta = embedMeta.get(embed);
+    if (meta) {
+      meta.dwarferWrapper.style.display = '';
+      meta.codeWrapper.style.display = '';
+      embedMeta.delete(embed);
+    }
+    embed.remove();
+  });
+
+  const gifBtn = document.querySelector('ytd-commentbox .dwarfer-gif-btn');
+  if (gifBtn) gifBtn.remove();
+  hidePicker();
+}
+
+function enableRendering() {
+  if (!scanIntervalId) scanIntervalId = setInterval(scanComments, 2000);
+  attachObserver();
+  commentBoxObserver.observe(document.body, { childList: true, subtree: true });
+  injectGifButton();
+  scanComments();
+}
+
+chrome.storage.onChanged.addListener((changes, area) => {
+  if (area !== 'local' || !('gifRenderEnabled' in changes)) return;
+  renderEnabled = changes.gifRenderEnabled.newValue ?? true;
+  if (renderEnabled) enableRendering(); else disableRendering();
+});
+
+chrome.storage.local.get('gifRenderEnabled', ({ gifRenderEnabled }) => {
+  if (gifRenderEnabled === false) {
+    renderEnabled = false;
+    disableRendering();
+  }
+});

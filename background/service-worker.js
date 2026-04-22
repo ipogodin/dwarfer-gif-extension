@@ -22,10 +22,6 @@ async function resolveGifCode(code) {
   return data;
 }
 
-export function toYouTubeSafeLink(shortUrl) {
-  return shortUrl.replace('dwarfer.link', 'dwarfer\u2024link');
-}
-
 /**
  * Fetch a short-lived HMAC token from the backend using the session cookie (GET).
  * Cached in chrome.storage with 1-minute buffer before expiry.

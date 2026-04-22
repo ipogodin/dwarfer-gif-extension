@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "Dwarfer GIF",
-  "version": "0.5.0",
-  "description": "Experimental: pick and view GIFs inline in YouTube comments via dwarfer.link. Research project — not affiliated with YouTube or Google.",
+  "version": "0.5.4",
+  "description": "Experimental: pick and view GIFs inline in YouTube comments via dwarfer.link. Not affiliated with YouTube or Google.",
   "permissions": ["storage", "alarms", "tabs"],
   "host_permissions": [
     "*://*.youtube.com/*",

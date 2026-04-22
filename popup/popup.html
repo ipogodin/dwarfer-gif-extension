@@ -17,6 +17,9 @@
       <div class="brand">
         <img src="../icons/48.png" alt="Dwarfer" class="brand-icon" />
         <span class="brand-name">DWARFER GIF</span>
+        <a href="https://buymeacoffee.com/ipogodin" target="_blank" rel="noreferrer" class="brand-bmc" title="Buy me a coffee">
+          <img src="../icons/bmc-logo.svg" alt="Buy me a coffee" class="brand-bmc-icon" />
+        </a>
       </div>
       <div class="card">
         <p class="card-title">Share GIFs on YouTube</p>
@@ -39,20 +42,37 @@
 
     <div id="logged-in" class="state hidden">
       <div class="brand">
-        <img src="../icons/48.png" alt="Dwarfer" class="brand-icon" />
-        <span class="brand-name">DWARFER GIF</span>
+        <a href="https://dwarfer.link" target="_blank" rel="noreferrer" class="brand-link">
+          <img src="../icons/48.png" alt="Dwarfer" class="brand-icon" />
+          <span class="brand-name">DWARFER GIF</span>
+        </a>
+        <a href="https://buymeacoffee.com/ipogodin" target="_blank" rel="noreferrer" class="brand-bmc" title="Buy me a coffee">
+          <img src="../icons/bmc-logo.svg" alt="Buy me a coffee" class="brand-bmc-icon" />
+        </a>
       </div>
-      <div class="user-card">
-        <img id="user-avatar" class="user-avatar" src="" alt="" />
-        <div class="user-info">
-          <span class="user-name" id="username"></span>
-          <span class="user-email" id="useremail"></span>
+      <div class="user-card-wrapper">
+        <div class="user-card">
+          <img id="user-avatar" class="user-avatar" src="" alt="" />
+          <div class="user-info">
+            <span class="user-name" id="username"></span>
+            <span class="user-email" id="useremail"></span>
+          </div>
+          <button id="account-chevron" class="account-chevron" aria-label="Account menu">▾</button>
+        </div>
+        <div id="account-dropdown" class="account-dropdown hidden">
+          <button id="sign-out-btn" class="account-dropdown-item">Sign out</button>
         </div>
       </div>
       <div class="card">
+        <div class="card-toggle-row">
+          <span class="card-toggle-label">Show GIFs inline</span>
+          <label class="toggle" aria-label="Toggle GIF rendering">
+            <input type="checkbox" id="gif-toggle" checked />
+            <span class="toggle-track"></span>
+          </label>
+        </div>
+        <div class="card-divider"></div>
         <p class="card-body">Open YouTube, click any comment box, then click the <strong>GIF</strong> button next to the emoji icon to pick a GIF.</p>
-        <a href="https://dwarfer.link" target="_blank" class="btn btn-secondary">Open Dwarfer</a>
-        <button id="sign-out-btn" class="btn btn-ghost">Sign out</button>
       </div>
       <div class="research-note">
         <span class="research-dot"></span>
